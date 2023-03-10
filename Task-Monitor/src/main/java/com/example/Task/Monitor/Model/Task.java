@@ -1,9 +1,6 @@
 package com.example.Task.Monitor.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +20,8 @@ public class Task {
 
     @Id
     @Column(name="task_id")
-    private int taskId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID taskId;
 
     @Column(name="title")
     private String title;

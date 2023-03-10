@@ -8,8 +8,9 @@ CREATE TABLE if not exists employees (
 );
 
 CREATE TABLE if not exists tasks (
-  task_id integer PRIMARY KEY,
+  task_id UUID PRIMARY KEY,
   title varchar(250),
   description varchar(250),
+  due_date date,
   assignee UUID REFERENCES employees(employee_id)
 );

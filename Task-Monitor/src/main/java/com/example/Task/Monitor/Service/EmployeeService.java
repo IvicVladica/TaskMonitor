@@ -5,6 +5,7 @@ import com.example.Task.Monitor.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,4 +40,14 @@ public class EmployeeService {
     public void deleteEmployee(UUID id) {
         employeeRepository.deleteByEmployeeId(id);
     }
+
+    public List<Employee> bestFiveEmployees (List<UUID> id) {
+        List<Employee> bestFiveEmployees = new ArrayList<>() {
+        };
+        for (var el : id) {
+            bestFiveEmployees.add(employeeRepository.findByEmployeeId(el));
+        }
+        return bestFiveEmployees;
+    }
+
 }

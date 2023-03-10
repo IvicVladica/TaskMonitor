@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TaskService {
@@ -37,4 +38,9 @@ public class TaskService {
     public void deleteTask(Integer id) {
         taskRepository.deleteByTaskId(id);
     }
+
+    public List<UUID> bestFiveEmployeeId() {
+        return taskRepository.findFiveBestEmployeeId();
+    }
+
 }

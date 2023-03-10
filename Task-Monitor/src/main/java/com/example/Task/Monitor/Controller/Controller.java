@@ -4,7 +4,6 @@ import com.example.Task.Monitor.Model.Employee;
 import com.example.Task.Monitor.Model.Task;
 import com.example.Task.Monitor.Service.EmployeeService;
 import com.example.Task.Monitor.Service.TaskService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,4 +49,10 @@ public class Controller {
 
     @DeleteMapping("api/tasks/delete/{id}")
     public void deleteTask(@PathVariable Integer id) {taskService.deleteTask(id);}
+
+    @GetMapping("api/tasks/bestfive")
+    public List<Employee> bestFive() {
+        List<UUID> bestFiveEmployeeId = taskService.bestFiveEmployeeId();
+        return employeeService.bestFiveEmployees(bestFiveEmployeeId);
+        }
 }
