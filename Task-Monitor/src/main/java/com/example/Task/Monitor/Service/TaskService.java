@@ -31,6 +31,7 @@ public class TaskService {
         myTask.setTitle(task.getTitle());
         myTask.setDescription(task.getDescription());
         myTask.setAssignee(task.getAssignee());
+        myTask.setClient(task.getClient());
         myTask.setDate(task.getDate());
         taskRepository.save(myTask);
     }
@@ -42,5 +43,9 @@ public class TaskService {
     public List<UUID> bestFiveEmployeeId() {
         return taskRepository.findFiveBestEmployeeId();
     }
+
+    public List<UUID> topThreeClientId() { return taskRepository.findThreeTopClientId();}
+
+    public List<UUID> worstThreeClientId() { return taskRepository.findThreeWorstClientId();}
 
 }

@@ -22,5 +22,16 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             "GROUP BY assignee ORDER BY COUNT(*) DESC LIMIT 5", nativeQuery = true)
     List<UUID> findFiveBestEmployeeId();
 
+    @Query(value = "SELECT client FROM tasks " +
+            "WHERE due_date >= date_trunc('month', current_date - interval '3' month)\n" +
+            "AND due_date < date_trunc('month', current_date)" +
+            "GROUP BY client ORDER BY COUNT(*) DESC LIMIT 3", nativeQuery = true)
+    List<UUID> findThreeTopClientId();
+
+    @Query(value = "SELECT client FROM tasks " +
+            "WHERE due_date >= date_trunc('month', current_date - interval '3' month)\n" +
+            "AND due_date < date_trunc('month', current_date)" +
+            "GROUP BY client ORDER BY COUNT(*) ASC LIMIT 3", nativeQuery = true)
+    List<UUID> findThreeWorstClientId();
 
 }

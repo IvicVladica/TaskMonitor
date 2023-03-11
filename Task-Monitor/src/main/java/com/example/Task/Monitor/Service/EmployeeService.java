@@ -42,8 +42,7 @@ public class EmployeeService {
     }
 
     public List<Employee> bestFiveEmployees (List<UUID> id) {
-        List<Employee> bestFiveEmployees = new ArrayList<>() {
-        };
+        List<Employee> bestFiveEmployees = new ArrayList<>();
         for (var el : id) {
             bestFiveEmployees.add(employeeRepository.findByEmployeeId(el));
         }

@@ -29,8 +29,11 @@ public class Task {
     @Column(name="description")
     private String description;
 
-    @Column(name="assignee")
+    @Column(name="assignee")    //employeeId
     private UUID assignee;
+
+    @Column(name = "client")  //clientId
+    private UUID client;
 
     @Column(name="due_date")
     private LocalDate date;

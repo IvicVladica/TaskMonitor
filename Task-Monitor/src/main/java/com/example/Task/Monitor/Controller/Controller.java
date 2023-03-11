@@ -56,10 +56,10 @@ public class Controller {
     public void deleteTask(@PathVariable UUID id) {taskService.deleteTask(id);}
 
     @GetMapping("api/tasks/bestfive")
-    public List<Employee> bestFive() {
+    public List<Employee> bestFiveEmployees() {
         List<UUID> bestFiveEmployeeId = taskService.bestFiveEmployeeId();
         return employeeService.bestFiveEmployees(bestFiveEmployeeId);
-        }
+    }
 
     @GetMapping("api/clients")
     public List<Client> listAllClients() {return clientService.getAllClients();}
@@ -69,8 +69,23 @@ public class Controller {
 
     @PatchMapping("api/clients/update/{id}")
     public void updateClient(@RequestBody Client client, @PathVariable UUID id) {
-        clientService.updateClient(client, id);}
+        clientService.updateClient(client, id);
+    }
 
     @DeleteMapping("api/clients/delete/{id}")
     public void deleteClient(@PathVariable UUID id) {clientService.deleteClient(id);}
+
+    @GetMapping("api/tasks/top3")
+    public List<Client> topThreeClients() {
+        List<UUID> topThreeClientsId = taskService.topThreeClientId();
+        System.out.println(topThreeClientsId); //proba
+        return clientService.findThreeClientsById(topThreeClientsId);
+    }
+
+    @GetMapping("api/tasks/worst3")
+    public List<Client> worstThreeClients() {
+        List<UUID> worstThreeClientsId = taskService.worstThreeClientId();
+        return clientService.findThreeClientsById(worstThreeClientsId);
+    }
+
 }

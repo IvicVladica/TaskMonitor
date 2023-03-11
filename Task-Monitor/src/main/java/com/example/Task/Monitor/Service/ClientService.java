@@ -5,6 +5,7 @@ import com.example.Task.Monitor.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,5 +33,13 @@ public class ClientService {
     }
 
     public void deleteClient (UUID id) {clientRepository.deleteByClientId(id);}
+
+    public List<Client> findThreeClientsById(List<UUID> id) {
+        List<Client> threeClients = new ArrayList<>();
+        for (var el : id) {
+            threeClients.add(clientRepository.findByClientId(el));
+        }
+        return threeClients;
+    }
 
 }
