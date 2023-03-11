@@ -26,7 +26,7 @@ public class TaskService {
         taskRepository.save(task);
     }
 
-    public void updateTask(Task task, Integer id) {
+    public void updateTask(Task task, UUID id) {
         Task myTask = taskRepository.findByTaskId(id);
         myTask.setTitle(task.getTitle());
         myTask.setDescription(task.getDescription());
@@ -35,7 +35,7 @@ public class TaskService {
         taskRepository.save(myTask);
     }
 
-    public void deleteTask(Integer id) {
+    public void deleteTask(UUID id) {
         taskRepository.deleteByTaskId(id);
     }
 

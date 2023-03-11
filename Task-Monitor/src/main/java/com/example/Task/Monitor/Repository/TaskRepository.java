@@ -11,10 +11,10 @@ import java.util.UUID;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    Task findByTaskId(Integer id);
+    Task findByTaskId(UUID id);
 
     @Transactional
-    void deleteByTaskId(Integer id);
+    void deleteByTaskId(UUID id);
 
     @Query(value = "SELECT assignee FROM tasks " +
             "WHERE due_date >= date_trunc('month', current_date - interval '1' month)\n" +
