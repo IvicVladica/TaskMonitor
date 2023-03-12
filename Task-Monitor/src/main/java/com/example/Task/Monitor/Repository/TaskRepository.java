@@ -34,4 +34,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             "GROUP BY client ORDER BY COUNT(*) ASC LIMIT 3", nativeQuery = true)
     List<UUID> findThreeWorstClientId();
 
+    Integer countByClient(UUID id);
+
 }

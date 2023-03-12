@@ -41,12 +41,12 @@ public class EmployeeService {
         employeeRepository.deleteByEmployeeId(id);
     }
 
-    public List<Employee> bestFiveEmployees (List<UUID> id) {
-        List<Employee> bestFiveEmployees = new ArrayList<>();
+    public List<Employee> findEmployeesByIdList(List<UUID> id) {
+        List<Employee> foundedEmployees = new ArrayList<>();
         for (var el : id) {
-            bestFiveEmployees.add(employeeRepository.findByEmployeeId(el));
+            foundedEmployees.add(employeeRepository.findByEmployeeId(el));
         }
-        return bestFiveEmployees;
+        return foundedEmployees;
     }
 
 }

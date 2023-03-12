@@ -45,7 +45,11 @@ public class Controller {
     public List<Task> listAllTasks() {return taskService.getAllTasks();}
 
     @PostMapping("api/tasks/create")
-    public void insertTask(@RequestBody Task task) {taskService.createTask(task);}
+    public void insertTask(@RequestBody Task task) {
+        taskService.createTask(task);
+        int clientCount = taskService.countClients(task.getClient());
+        clientService.updateClientPriority(task.getClient(), clientCount);
+        }
 
     @PatchMapping("api/tasks/update/{id}")
     public void updateTask(@RequestBody Task task, @PathVariable UUID id) {
@@ -55,10 +59,10 @@ public class Controller {
     @DeleteMapping("api/tasks/delete/{id}")
     public void deleteTask(@PathVariable UUID id) {taskService.deleteTask(id);}
 
-    @GetMapping("api/tasks/bestfive")
+    @GetMapping("api/tasks/best5")
     public List<Employee> bestFiveEmployees() {
         List<UUID> bestFiveEmployeeId = taskService.bestFiveEmployeeId();
-        return employeeService.bestFiveEmployees(bestFiveEmployeeId);
+        return employeeService.findEmployeesByIdList(bestFiveEmployeeId);
     }
 
     @GetMapping("api/clients")
@@ -78,14 +82,13 @@ public class Controller {
     @GetMapping("api/tasks/top3")
     public List<Client> topThreeClients() {
         List<UUID> topThreeClientsId = taskService.topThreeClientId();
-        System.out.println(topThreeClientsId); //proba
-        return clientService.findThreeClientsById(topThreeClientsId);
+        return clientService.findClientsByIdList(topThreeClientsId);
     }
 
     @GetMapping("api/tasks/worst3")
     public List<Client> worstThreeClients() {
         List<UUID> worstThreeClientsId = taskService.worstThreeClientId();
-        return clientService.findThreeClientsById(worstThreeClientsId);
+        return clientService.findClientsByIdList(worstThreeClientsId);
     }
 
 }

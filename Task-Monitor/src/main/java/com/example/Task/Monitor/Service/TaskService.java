@@ -22,9 +22,7 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public void createTask(Task task) {
-        taskRepository.save(task);
-    }
+    public void createTask(Task task) {taskRepository.save(task);}
 
     public void updateTask(Task task, UUID id) {
         Task myTask = taskRepository.findByTaskId(id);
@@ -47,5 +45,7 @@ public class TaskService {
     public List<UUID> topThreeClientId() { return taskRepository.findThreeTopClientId();}
 
     public List<UUID> worstThreeClientId() { return taskRepository.findThreeWorstClientId();}
+
+    public Integer countClients(UUID id) {return taskRepository.countByClient(id);}
 
 }

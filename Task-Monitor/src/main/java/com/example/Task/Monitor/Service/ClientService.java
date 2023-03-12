@@ -34,12 +34,20 @@ public class ClientService {
 
     public void deleteClient (UUID id) {clientRepository.deleteByClientId(id);}
 
-    public List<Client> findThreeClientsById(List<UUID> id) {
-        List<Client> threeClients = new ArrayList<>();
+    public List<Client> findClientsByIdList(List<UUID> id) {
+        List<Client> foundedClients = new ArrayList<>();
         for (var el : id) {
-            threeClients.add(clientRepository.findByClientId(el));
+            foundedClients.add(clientRepository.findByClientId(el));
         }
-        return threeClients;
+        return foundedClients;
+    }
+
+    public void updateClientPriority(UUID id, Integer currentCount) {
+        Client myClient = clientRepository.findByClientId(id);
+        if (currentCount < 5) {myClient.setPriority("low");}
+        else if (currentCount <10) {myClient.setPriority("medium");}
+        else myClient.setPriority("high");
+        clientRepository.save(myClient);
     }
 
 }
