@@ -1,6 +1,6 @@
 package com.example.Task.Monitor.Repository;
 
-import com.example.Task.Monitor.Model.Client;
+import com.example.Task.Monitor.Domain.Entity.Client;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

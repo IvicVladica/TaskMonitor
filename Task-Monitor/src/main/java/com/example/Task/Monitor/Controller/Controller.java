@@ -1,11 +1,13 @@
 package com.example.Task.Monitor.Controller;
 
-import com.example.Task.Monitor.Model.Client;
-import com.example.Task.Monitor.Model.Employee;
-import com.example.Task.Monitor.Model.Task;
-import com.example.Task.Monitor.Service.ClientService;
-import com.example.Task.Monitor.Service.EmployeeService;
-import com.example.Task.Monitor.Service.TaskService;
+import com.example.Task.Monitor.Domain.Dtos.ClientDTO;
+import com.example.Task.Monitor.Domain.Dtos.EmployeeDTO;
+import com.example.Task.Monitor.Domain.Entity.Client;
+import com.example.Task.Monitor.Domain.Entity.Employee;
+import com.example.Task.Monitor.Domain.Entity.Task;
+import com.example.Task.Monitor.Domain.Service.ClientService;
+import com.example.Task.Monitor.Domain.Service.EmployeeService;
+import com.example.Task.Monitor.Domain.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +30,10 @@ public class Controller {
     }
 
     @GetMapping("/api/employees")
-    public List<Employee> listAllEmployee() {return employeeService.getAllEmployees();}
+    public List<EmployeeDTO> listAllEmployee() {return employeeService.getAllEmployees();}
 
     @PostMapping("api/employees/create")
-    public void insertEmployee(@RequestBody Employee employee) {employeeService.createEmployee(employee);}
+    public void insertEmployee(@RequestBody EmployeeDTO employeeDto) {employeeService.createEmployee(employeeDto);}
 
     @PatchMapping("api/employees/update/{id}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable UUID id) {
@@ -66,10 +68,10 @@ public class Controller {
     }
 
     @GetMapping("api/clients")
-    public List<Client> listAllClients() {return clientService.getAllClients();}
+    public List<ClientDTO> listAllClients() {return clientService.getAllClients();}
 
     @PostMapping("api/clients/create")
-    public void insertClient(@RequestBody Client client) {clientService.createClient(client);}
+    public void insertClient(@RequestBody ClientDTO clientDto) {clientService.createClient(clientDto);}
 
     @PatchMapping("api/clients/update/{id}")
     public void updateClient(@RequestBody Client client, @PathVariable UUID id) {
