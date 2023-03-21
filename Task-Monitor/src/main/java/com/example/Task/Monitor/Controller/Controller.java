@@ -23,17 +23,21 @@ public class Controller {
 
 
     @Autowired
-    public Controller (EmployeeService employeeService, TaskService taskService, ClientService clientService) {
+    public Controller(EmployeeService employeeService, TaskService taskService, ClientService clientService) {
         this.employeeService = employeeService;
         this.taskService = taskService;
         this.clientService = clientService;
     }
 
     @GetMapping("/api/employees")
-    public List<EmployeeDTO> listAllEmployee() {return employeeService.getAllEmployees();}
+    public List<EmployeeDTO> listAllEmployee() {
+        return employeeService.getAllEmployees();
+    }
 
     @PostMapping("api/employees/create")
-    public void insertEmployee(@RequestBody EmployeeDTO employeeDto) {employeeService.createEmployee(employeeDto);}
+    public void insertEmployee(@RequestBody EmployeeDTO employeeDto) {
+        employeeService.createEmployee(employeeDto);
+    }
 
     @PatchMapping("api/employees/update/{id}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable UUID id) {
@@ -41,17 +45,21 @@ public class Controller {
     }
 
     @DeleteMapping("api/employees/delete/{id}")
-    public void deleteEmployee(@PathVariable UUID id) {employeeService.deleteEmployee(id);}
+    public void deleteEmployee(@PathVariable UUID id) {
+        employeeService.deleteEmployee(id);
+    }
 
     @GetMapping("/api/tasks")
-    public List<Task> listAllTasks() {return taskService.getAllTasks();}
+    public List<Task> listAllTasks() {
+        return taskService.getAllTasks();
+    }
 
     @PostMapping("api/tasks/create")
     public void insertTask(@RequestBody Task task) {
         taskService.createTask(task);
         int clientCount = taskService.countClients(task.getClient());
         clientService.updateClientPriority(task.getClient(), clientCount);
-        }
+    }
 
     @PatchMapping("api/tasks/update/{id}")
     public void updateTask(@RequestBody Task task, @PathVariable UUID id) {
@@ -59,7 +67,9 @@ public class Controller {
     }
 
     @DeleteMapping("api/tasks/delete/{id}")
-    public void deleteTask(@PathVariable UUID id) {taskService.deleteTask(id);}
+    public void deleteTask(@PathVariable UUID id) {
+        taskService.deleteTask(id);
+    }
 
     @GetMapping("api/tasks/best5")
     public List<Employee> bestFiveEmployees() {
@@ -68,10 +78,14 @@ public class Controller {
     }
 
     @GetMapping("api/clients")
-    public List<ClientDTO> listAllClients() {return clientService.getAllClients();}
+    public List<ClientDTO> listAllClients() {
+        return clientService.getAllClients();
+    }
 
     @PostMapping("api/clients/create")
-    public void insertClient(@RequestBody ClientDTO clientDto) {clientService.createClient(clientDto);}
+    public void insertClient(@RequestBody ClientDTO clientDto) {
+        clientService.createClient(clientDto);
+    }
 
     @PatchMapping("api/clients/update/{id}")
     public void updateClient(@RequestBody Client client, @PathVariable UUID id) {
@@ -79,7 +93,9 @@ public class Controller {
     }
 
     @DeleteMapping("api/clients/delete/{id}")
-    public void deleteClient(@PathVariable UUID id) {clientService.deleteClient(id);}
+    public void deleteClient(@PathVariable UUID id) {
+        clientService.deleteClient(id);
+    }
 
     @GetMapping("api/tasks/top3")
     public List<Client> topThreeClients() {

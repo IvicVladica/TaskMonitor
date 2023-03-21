@@ -29,13 +29,13 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name="birth_date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name="salary")
+    @Column(name = "salary")
     private int salary;
 
 }

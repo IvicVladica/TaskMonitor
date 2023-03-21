@@ -20,7 +20,7 @@ public class Client {
 
     @Id
     @Column(name = "client_id")
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     UUID clientId;
 
     @Column(name = "name")

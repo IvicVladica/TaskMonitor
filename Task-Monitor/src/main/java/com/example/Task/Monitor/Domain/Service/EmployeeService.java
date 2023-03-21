@@ -3,6 +3,7 @@ package com.example.Task.Monitor.Domain.Service;
 import com.example.Task.Monitor.Domain.Dtos.EmployeeDTO;
 import com.example.Task.Monitor.Domain.Entity.Employee;
 import com.example.Task.Monitor.Domain.Mapper.EmployeeMapper;
+import com.example.Task.Monitor.Exceptions.NoIdExistsException;
 import com.example.Task.Monitor.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,9 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee, UUID id) {
+        if (employeeRepository.findByEmployeeId(id) == null) {
+            throw new NoIdExistsException();
+        }
         Employee myEmployee = employeeRepository.findByEmployeeId(id);
         myEmployee.setName(employee.getName());
         myEmployee.setEmail(employee.getEmail());
@@ -50,6 +54,9 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(UUID id) {
+        if (employeeRepository.findByEmployeeId(id) == null) {
+            throw new NoIdExistsException();
+        }
         employeeRepository.deleteByEmployeeId(id);
     }
 

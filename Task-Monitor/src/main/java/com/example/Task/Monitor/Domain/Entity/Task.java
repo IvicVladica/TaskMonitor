@@ -15,27 +15,27 @@ import java.util.UUID;
 @AllArgsConstructor
 
 @Entity
-@Table(name="tasks")
+@Table(name = "tasks")
 public class Task {
 
     @Id
-    @Column(name="task_id")
+    @Column(name = "task_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID taskId;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="assignee")    //employeeId
+    @Column(name = "assignee")    //employeeId
     private UUID assignee;
 
     @Column(name = "client")  //clientId
     private UUID client;
 
-    @Column(name="due_date")
+    @Column(name = "due_date")
     private LocalDate date;
 
 }
