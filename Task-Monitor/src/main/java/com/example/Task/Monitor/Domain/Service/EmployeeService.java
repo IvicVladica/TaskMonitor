@@ -36,7 +36,14 @@ public class EmployeeService {
     }
 
     public void createEmployee(EmployeeDTO employeeDto) {
-        Employee employee = employeeMapper.employeeDtoToEntity(employeeDto);
+        Employee employee = Employee.builder()
+                .name(employeeDto.getName())
+                .email(employeeDto.getEmail())
+                .phone(employeeDto.getPhone())
+                .birthDate(employeeDto.getBirthDate())
+                .salary(employeeDto.getSalary())
+                .build();
+        //Employee employee = employeeMapper.employeeDtoToEntity(employeeDto);
         employeeRepository.save(employee);
     }
 

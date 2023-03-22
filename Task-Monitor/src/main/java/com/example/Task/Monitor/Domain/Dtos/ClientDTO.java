@@ -1,17 +1,20 @@
 package com.example.Task.Monitor.Domain.Dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 
 public class ClientDTO {
 
+    @NotBlank(message = "Invalid name: Empty name")
+    @NotNull(message = "Invalid name: Name is null")
     private String name;
 
     private String address;

@@ -8,6 +8,7 @@ import com.example.Task.Monitor.Domain.Entity.Task;
 import com.example.Task.Monitor.Domain.Service.ClientService;
 import com.example.Task.Monitor.Domain.Service.EmployeeService;
 import com.example.Task.Monitor.Domain.Service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class Controller {
     }
 
     @PostMapping("api/employees/create")
-    public void insertEmployee(@RequestBody EmployeeDTO employeeDto) {
+    public void insertEmployee(@RequestBody @Valid EmployeeDTO employeeDto) {
         employeeService.createEmployee(employeeDto);
     }
 
@@ -83,7 +84,7 @@ public class Controller {
     }
 
     @PostMapping("api/clients/create")
-    public void insertClient(@RequestBody ClientDTO clientDto) {
+    public void insertClient(@RequestBody @Valid ClientDTO clientDto) {
         clientService.createClient(clientDto);
     }
 

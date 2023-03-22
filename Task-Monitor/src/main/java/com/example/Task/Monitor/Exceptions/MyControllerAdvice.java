@@ -15,4 +15,5 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleNoSuchElement(NoIdExistsException noIdExistsException) {
         return new ResponseEntity<String>("ID not found", HttpStatus.NOT_FOUND);
     }
+
 }
