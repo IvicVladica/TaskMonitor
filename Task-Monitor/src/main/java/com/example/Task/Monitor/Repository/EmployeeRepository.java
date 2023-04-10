@@ -13,6 +13,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
 
     Employee findByEmployeeId(UUID id);
 
+    Employee findByEmail(String email);
+
     @Transactional
     void deleteByEmployeeId(UUID id);
 

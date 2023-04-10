@@ -13,7 +13,13 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NoIdExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> handleNoSuchElement(NoIdExistsException noIdExistsException) {
-        return new ResponseEntity<String>("ID not found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("ID not found", HttpStatus.NOT_FOUND);
+    }
+
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleEmailAlreadyExists(EmailAlreadyExistsException emailAlreadyExistsException) {
+        return new ResponseEntity<>("Email already exist!", HttpStatus.CONFLICT);
     }
 
 }

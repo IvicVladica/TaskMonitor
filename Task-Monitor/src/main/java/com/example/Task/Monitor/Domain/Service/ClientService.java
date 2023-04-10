@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 public class ClientService {
 
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     public ClientMapper clientMapper;
 

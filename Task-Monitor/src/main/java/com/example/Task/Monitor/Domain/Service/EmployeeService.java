@@ -3,6 +3,7 @@ package com.example.Task.Monitor.Domain.Service;
 import com.example.Task.Monitor.Domain.Dtos.EmployeeDTO;
 import com.example.Task.Monitor.Domain.Entity.Employee;
 import com.example.Task.Monitor.Domain.Mapper.EmployeeMapper;
+import com.example.Task.Monitor.Exceptions.EmailAlreadyExistsException;
 import com.example.Task.Monitor.Exceptions.NoIdExistsException;
 import com.example.Task.Monitor.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,9 @@ import java.util.UUID;
 @Service
 public class EmployeeService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
-    private EmployeeMapper employeeMapper;
+    private final EmployeeMapper employeeMapper;
 
     @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
@@ -36,6 +37,9 @@ public class EmployeeService {
     }
 
     public void createEmployee(EmployeeDTO employeeDto) {
+        if (employeeRepository.findByEmail(employeeDto.getEmail()) != null) {
+            throw new EmailAlreadyExistsException();
+        }
         Employee employee = Employee.builder()
                 .name(employeeDto.getName())
                 .email(employeeDto.getEmail())
