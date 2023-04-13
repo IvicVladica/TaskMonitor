@@ -18,9 +18,9 @@ import java.util.UUID;
 @RestController
 public class Controller {
 
-    private EmployeeService employeeService;
-    private TaskService taskService;
-    private ClientService clientService;
+    private final EmployeeService employeeService;
+    private final TaskService taskService;
+    private final ClientService clientService;
 
 
     @Autowired
